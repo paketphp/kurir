@@ -4,4 +4,4 @@
 /.gitignore         export-ignore
 /phpunit.xml        export-ignore
 /README.md          export-ignore
-/test/              export-ignore
+/tests/             export-ignore
