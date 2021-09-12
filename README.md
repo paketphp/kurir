@@ -39,10 +39,10 @@ $kurir->emit(new MyEvent('Hello, World!'));
 
 ## General
 
+### Core interfaces
+
 Kurir consist of three interfaces, `Event`, `EventSource` and  `EventEmitter`, where
 class `Kurir` implements `EventSource` and `EventEmitter`.
-
-### Core interfaces
 
 #### Event
 
