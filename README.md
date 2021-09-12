@@ -4,12 +4,6 @@ Kurir (_Swedish_ courier) is a minimal event system for PHP.  With Kurir you can
 
 ![](https://github.com/paketphp/kurir/workflows/tests/badge.svg)
 
-## Installation
-
-`composer require paket/kurir`
-
-Requires PHP 7.1 or higher.
-
 ## Usage
 
 ```
@@ -36,6 +30,14 @@ $kurir->subscribe(function (MyEvent $event) {
 
 $kurir->emit(new MyEvent('Hello, World!'));
 ```
+
+## Installation
+
+`composer require paket/kurir`
+
+## Requirements
+
+Requires PHP 7.1 or higher.
 
 ## General
 
@@ -161,5 +163,7 @@ $repository = new RecordRepository($storage, $kurir);
 $log = new RecordLog($kurir);
 $repository->insertRecord(['action' => 'login', 'user' => 'joe', 'time' => 1631375296]);
 ```
+## License
 
+Kurir is released under the MIT License. See the bundled file LICENSE.txt.
 
