@@ -7,7 +7,6 @@ use Closure;
 use LogicException;
 use ReflectionException;
 use ReflectionFunction;
-use ReflectionMethod;
 use ReflectionNamedType;
 
 final class Kurir implements EventEmitter, EventSource
@@ -41,22 +40,7 @@ final class Kurir implements EventEmitter, EventSource
     private function getEventName(callable $listener): string
     {
         try {
-            if ($listener instanceof Closure) {
-                $rf = new ReflectionFunction($listener);
-            } elseif (is_array($listener)) {
-                $rf = new ReflectionMethod($listener[0], $listener[1]);
-            } elseif (is_object($listener)) {
-                $rf = new ReflectionMethod($listener, '__invoke');
-            } elseif (is_string($listener)) {
-                $parts = explode('::', $listener, 2);
-                if (isset($parts[1])) {
-                    $rf = new ReflectionMethod($parts[0], $parts[1]);
-                } else {
-                    $rf = new ReflectionFunction($listener);
-                }
-            } else {
-                throw new LogicException('Unknown callable type');
-            }
+            $rf = new ReflectionFunction(Closure::fromCallable($listener));
         } catch (ReflectionException $e) {
             throw new LogicException('Failed reflecting listener', 0, $e);
         }
